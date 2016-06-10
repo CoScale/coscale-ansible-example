@@ -1,0 +1,14 @@
+---
+# This role contains coscale installation that will run on all nodes.
+
+- name: download agent on server
+  get_url: url="{{coscale_agent_url}}" dest="/root/coscale-agent.deb"
+
+- name: install coscale agent
+  apt: deb="/root/coscale-agent.deb"
+  become: true
+
+- name: Create agent configuration file
+  template: src=plugins.conf dest=/opt/coscale/agent/plugins.conf
+  notify:
+  - restart coscale-agent

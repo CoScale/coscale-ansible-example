@@ -5,6 +5,11 @@ user=mysql
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0
 port={{ mysql_port }}
+slow_query_log = 1
+long_query_time = 0 # log all statements with execution time above 0 s.
+slow_query_log_file = /var/log/mysql/slow.log
+log_queries_not_using_indexes = 1
+event_scheduler = ON
 
 [mysqld_safe]
 log-error=/var/log/mysqld.log

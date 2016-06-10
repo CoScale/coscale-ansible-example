@@ -4,6 +4,7 @@
   become: true
   roles:
   - common
+  - coscale
 
 # Configure and deploy database servers.
 - hosts: dbservers

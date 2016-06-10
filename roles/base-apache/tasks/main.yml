@@ -6,5 +6,10 @@
   with_items:
    - apache2
 
+- name: Create apache website configuration file
+  template: src=000-default.conf dest=/etc/apache2/sites-enabled/000-default.conf
+  notify:
+  - reload apache2
+
 - name: apache service state
   service: name=apache2 state=started enabled=yes

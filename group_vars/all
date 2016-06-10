@@ -1,3 +1,104 @@
 ---
 # Variables here are applicable to all host groups
 httpd_port: 80
+
+#
+# CoScale
+#
+
+# Custom agent download url, you can copy this from agent page
+coscale_agent_url: "[[Add your agent url here]]"
+
+# CoScale plugins
+# Plugin configuration examples
+
+# coscale_plugins:
+#
+#     apache:
+#         log_files:
+#             - '\"/var/log/apache2/access.log\" \"%V \"%r\" %D %s %I %O\"'
+#         status_url: "http://localhost/server-status"
+#
+#     haproxy:
+#         log_files:
+#             - '\"/var/log/haproxy.log\" \"%hr\\ %{+Q}r\\ %Tt\\ %ST\\ %B\"'
+#         status_url: "http://someuser:somepass@localhost:1936/haproxy?stats"
+#
+#     nginx:
+#         log_files:
+#             - '\"/var/log/nginx/access.log\" \"$server_name \"$request\" $request_time $status $request_length $bytes_sent\"'
+#         status_url: "http://localhost/nginx_status"
+#
+#     mysql:
+#         #
+#         # 1. Performance monitoring of database queries
+#         # Uncomment one of the following:
+#
+#         # Performance schema
+#         #query_stats: "true"
+#         #query_type: "PERFORMANCE SCHEMA"
+#
+#         # Slow log
+#         #query_stats: "true"
+#         #query_type: "SLOW QUERY"
+#         #file: '\"/var/log/mysql/slow.log\"'
+#
+#         # Query data disabled
+#         #query_stats: "false"
+#
+#
+#         #
+#         # 2. Monitoring of global metrics
+#         # Uncomment one of the following:
+#
+#         # Host / port
+#         #hostname: "localhost",
+#         #port: "3306",
+#
+#         # Unix socket
+#         #unix_socket: "/var/run/mysqld/mysqld.sock",
+#
+#
+#         #
+#         # 3. Required configuration
+#         #
+#         username: "username"
+#         password: "password"
+#         database: "database"
+#
+#     postgresql:
+#         #
+#         # 1. Performance monitoring of database queries
+#         # Uncomment one of the following:
+#
+#         # Slow log
+#         #query_stats: "true"
+#         #query_file: '\"/var/lib/postgresql/9.1/main/pg_log/postgresql-%a.log\"'
+#         #query_log_statement: "all"
+#         #query_log_duration: "-1"
+#         #query_log_format: "\"%m %u@%d %p %r %e \""
+#
+#         # Query data disabled
+#         #query_stats: "false"
+#
+#
+#         #
+#         # 2. Monitoring of global metrics
+#         # Uncomment one of the following:
+#
+#         # Enabled:
+#         #global_stats: "true"
+#
+#         # Disabled:
+#         #query_stats: "false"
+#
+#
+#         #
+#         # 3. Required configuration
+#         # Host / port
+#         username: "username"
+#         password: "password"
+#         hostname: "localhost"
+#         port: "3306"
+#         database: "database"
+#
