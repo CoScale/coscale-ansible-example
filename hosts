@@ -1,0 +1,10 @@
+
+[lbservers]
+ansible-loadbalancer
+
+[webservers]
+ansible-web0
+ansible-web1
+
+[dbservers]
+ansible-db
