@@ -27,5 +27,5 @@ iface: '{{ ansible_default_ipv4.interface }}'
 coscale_plugins:
      haproxy:
          log_files:
-             - '\"/var/log/haproxy.log\" \"%hr\\ %{+Q}r\\ %Tt\\ %ST\\ %B\"'
+             - '"/var/log/haproxy.log" "%hr\ %{+Q}r\ %Tt\ %ST\ %B"'
          status_url: "http://someuser:somepass@localhost:1936/haproxy?stats"
