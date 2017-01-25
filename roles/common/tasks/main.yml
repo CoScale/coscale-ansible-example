@@ -1,6 +1,0 @@
----
-# This role contains common plays that will run on all nodes.
-
-- name: Update apt before run
-  # Run the equivalent of "apt-get update" as a separate step
-  apt: update_cache=yes

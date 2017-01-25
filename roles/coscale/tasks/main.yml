@@ -1,12 +1,39 @@
 ---
-# This role contains coscale installation that will run on all nodes.
+# This role contains CoScale installation that will run on all nodes.
 
-- name: download agent on server
-  get_url: url="{{coscale_agent_url}}" dest="/root/coscale-agent.deb"
 
-- name: install coscale agent
-  apt: deb="/root/coscale-agent.deb"
+- name: Get auth token
+  uri:
+    url: https://api.coscale.com/api/v1/app/{{ coscale.app_id }}/login/
+    method: POST
+    body: "{\"accessToken\": \"{{ coscale.accesstoken }}\"}"
+    body_format: json
+  register: accessToken
+
+- name: Download agent
+  get_url:
+    url="https://api.coscale.com/api/v1/app/{{ coscale.app_id }}/agenttemplates/{{ coscale.agent_template }}/download/?token={{ accessToken.json.token }}"
+    dest="/tmp/coscale-agent.deb"
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Install agent
+  apt:
+    deb="/tmp/coscale-agent.deb"
   become: true
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Download agent
+  get_url:
+    url="https://api.coscale.com/api/v1/app/{{ coscale.app_id }}/agenttemplates/{{ coscale.agent_template }}/download/?token={{ accessToken.json.token }}"
+    dest="/tmp/coscale-agent.rpm"
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Install agent
+  yum:
+    name: "/tmp/coscale-agent.rpm"
+    state: present
+  become: true
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
 - name: Create agent configuration file
   template: src=plugins.conf dest=/opt/coscale/agent/plugins.conf
